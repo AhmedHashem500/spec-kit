@@ -58,6 +58,13 @@ one line: the feature, the step just finished, and the next step.
    each specify run, make sure the working tree is on the main branch so the new feature branch starts from
    it; never discard uncommitted work to get there — if there is any, stop and ask.
 
+   **Empty input and no features yet** (a fresh project): do not invent features. Read the repository's
+   docs (README, `docs/`, any plan, roadmap or checklist file) and propose the feature list for the first
+   phase as one numbered list, each item one line, in the order you recommend building them (foundations
+   first), with your recommendation marked. If the docs give nothing to propose from, ask the owner one
+   question: what is the first thing this project must do? End your turn; his answer becomes the input of
+   the next run.
+
 4. **Choose what to advance (batch rule).** When several features exist:
    - First bring **every** feature through stages 1-2 (specify, clarify). Later features often reveal what
      an earlier, foundational feature is missing; fix that in the earlier spec before planning it.
