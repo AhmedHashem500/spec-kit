@@ -23,4 +23,5 @@ Implementation is blocked until the owner has approved this feature after an ext
     4. the options as a numbered list `1.` `2.` `3.`; the recommended one is first, **bold**, starts with `⭐`, and ends with `— مُرشَّح: <one-line reason>`
     5. `رد برقم الاختيار، أو «موافق» على المُرشَّح، أو إجابتك في 5 كلمات.`
   - Record the answer exactly as chosen; "yes", "موافق" or "recommended" means the ⭐ option.
+  - **Back-to-back, quiet**: ask the next question immediately after an answer, with no text between questions (no acknowledgement, no recap). Keep the answers in working memory and write them all to the spec in **one pass at the end of the session** for that feature (this overrides any "save after each answer" step), then show one short summary of what changed.
 - **Evidence before claims**: never say a file was written, a check passed, or a step is done without showing the evidence (the command output, or the file read back).
