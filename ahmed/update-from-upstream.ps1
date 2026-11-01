@@ -5,6 +5,8 @@
 # preset, scripts), so upstream merges never touch it.
 #   - Merges the latest release tag (vX.Y.Z, no pre-release) or -Tag into branch "ahmed".
 #     MERGE only: never rebase, never reset, so our commits survive.
+#   - If the branch already holds every code change of the tag (it tracks upstream main past the
+#     release), nothing is merged: the release's own version-bump commit would only conflict.
 #   - A merge conflict aborts the merge, leaves the branch as it was and exits 1 with the file list.
 #   - After a merge (or when already up to date) it runs ahmed\verify.ps1: upstream extension /
 #     preset tests plus a smoke install of our extension and preset. Exit code = verify's.
@@ -47,9 +49,21 @@ if (-not $Tag) {
 Invoke-Git rev-parse --verify --quiet "refs/tags/$Tag" | Out-Null
 if ($script:gitExit -ne 0) { throw "tag not found: $Tag" }
 
-Invoke-Git merge-base --is-ancestor "refs/tags/$Tag" HEAD | Out-Null
-if ($script:gitExit -eq 0) {
+# Upstream tags each release on a "chore: bump version" commit that branches off main, while
+# main moves on (next .devN version). When the fork already holds main past that point, the only
+# commits missing are release bookkeeping (pyproject.toml / CHANGELOG.md); merging them would just
+# conflict on the version line, so treat the release as already contained.
+$bookkeeping = @('pyproject.toml', 'CHANGELOG.md')
+$missing = @(Invoke-Git rev-list "HEAD..refs/tags/$Tag" | Where-Object { "$_".Trim() })
+$codeMissing = $false
+foreach ($c in $missing) {
+  $files = Invoke-Git diff-tree --no-commit-id --name-only -r "$c"
+  foreach ($f in $files) { if ($bookkeeping -notcontains "$f".Trim()) { $codeMissing = $true } }
+}
+if ($missing.Count -eq 0) {
   Write-Output "upstream: $Tag already merged into $branch; nothing to merge"
+} elseif (-not $codeMissing) {
+  Write-Output "upstream: $branch already contains the code of $Tag; only release bookkeeping ($($bookkeeping -join ', ')) differs; nothing to merge"
 } else {
   $incoming = ((Invoke-Git rev-list --count "HEAD..refs/tags/$Tag") -join '').Trim()
   Invoke-Git merge --no-edit --no-ff -m "Merge upstream release $Tag into $branch" "refs/tags/$Tag" | Out-Null
