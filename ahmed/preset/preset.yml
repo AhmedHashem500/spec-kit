@@ -1,0 +1,76 @@
+schema_version: "1.0"
+
+preset:
+  id: "ahmed"
+  name: "Ahmed Owner Rules"
+  version: "1.0.0"
+  description: "Owner constitution base, Egyptian Arabic owner replies with Arabic spec prose, and an implement gate that requires an approved external review"
+  author: "Ahmed Hashem"
+  repository: "https://github.com/AhmedHashem500/spec-kit"
+  license: "MIT"
+
+requires:
+  speckit_version: ">=0.14.4"
+  # The implement gate calls the review-gate command of the companion
+  # extension (ahmed/extension). Install the extension first.
+  extensions:
+    - "ahmed"
+
+provides:
+  templates:
+    - type: "template"
+      name: "constitution-template"
+      file: "templates/constitution-template.md"
+      description: "Owner base principles plus project-specific slots"
+      replaces: "constitution-template"
+
+    # The six commands below share one prepend block (owner-rules.md).
+    - type: "command"
+      name: "speckit.specify"
+      file: "commands/owner-rules.md"
+      description: "Prepend owner language and evidence rules"
+      strategy: "prepend"
+
+    - type: "command"
+      name: "speckit.clarify"
+      file: "commands/owner-rules.md"
+      description: "Prepend owner language and evidence rules"
+      strategy: "prepend"
+
+    - type: "command"
+      name: "speckit.plan"
+      file: "commands/owner-rules.md"
+      description: "Prepend owner language and evidence rules"
+      strategy: "prepend"
+
+    - type: "command"
+      name: "speckit.tasks"
+      file: "commands/owner-rules.md"
+      description: "Prepend owner language and evidence rules"
+      strategy: "prepend"
+
+    - type: "command"
+      name: "speckit.checklist"
+      file: "commands/owner-rules.md"
+      description: "Prepend owner language and evidence rules"
+      strategy: "prepend"
+
+    - type: "command"
+      name: "speckit.analyze"
+      file: "commands/owner-rules.md"
+      description: "Prepend owner language and evidence rules"
+      strategy: "prepend"
+
+    # implement gets the approval gate first, then the same owner rules
+    # (a copy of owner-rules.md; verify.ps1 fails if the copy drifts).
+    - type: "command"
+      name: "speckit.implement"
+      file: "commands/speckit.implement.md"
+      description: "Prepend the external-review approval gate and owner rules"
+      strategy: "prepend"
+
+tags:
+  - "owner"
+  - "governance"
+  - "arabic"
+  - "approval"

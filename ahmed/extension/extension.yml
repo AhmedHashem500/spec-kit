@@ -1,0 +1,35 @@
+schema_version: "1.0"
+
+extension:
+  id: "ahmed"
+  name: "Ahmed Owner Gates"
+  version: "1.0.0"
+  description: "External review gate: packs spec, plan and tasks for an outside reviewer and blocks implementation until the owner approves"
+  category: "process"
+  effect: "read-write"
+  author: "Ahmed Hashem"
+  repository: "https://github.com/AhmedHashem500/spec-kit"
+  license: "MIT"
+
+requires:
+  # 0.12.17 is the first core that resolves __SPECKIT_COMMAND_*__ tokens in
+  # auto-registered skills (see extensions/github/extension.yml).
+  speckit_version: ">=0.12.17"
+
+provides:
+  commands:
+    - name: "speckit.ahmed.review-gate"
+      file: "commands/speckit.ahmed.review-gate.md"
+      description: "Pack spec, plan and tasks into one review file, wait for the owner's external review, and record explicit approval"
+
+hooks:
+  before_implement:
+    command: "speckit.ahmed.review-gate"
+    optional: false
+    description: "External review and explicit owner approval are required before implementation"
+
+tags:
+  - "review"
+  - "approval"
+  - "gate"
+  - "process"
