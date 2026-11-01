@@ -48,15 +48,20 @@ one line: the feature, the step just finished, and the next step.
    (derive project principles from the repository's docs; ask the owner only what the docs do not answer),
    then continue. If `.specify/` is missing, stop and tell the owner the project is not initialised.
 
-2. **Build the feature list.** List every directory under `specs/` whose name starts with three digits
+2. **Build the feature list.** Work from the branch of the highest-numbered feature (`git branch --list
+   '[0-9][0-9][0-9]-*'`), since branches are stacked. List every directory under `specs/` whose name starts with three digits
    (`001-...`). For each, derive its stage from the table above by checking the "Done when" evidence in
    order; the first stage whose evidence is missing is the feature's current stage. Show the list as one
    line per feature: `<dir>: <current stage>`.
 
 3. **New features in the input?** If the user input contains feature descriptions that do not match an
-   existing feature, create them first, one at a time, with `/speckit-specify` (in the order given). Before
-   each specify run, make sure the working tree is on the main branch so the new feature branch starts from
-   it; never discard uncommitted work to get there — if there is any, stop and ask.
+   existing feature, create them first, one at a time, with `/speckit-specify` (in the order given).
+   **Stacked branches:** before each specify run, check out the branch of the highest-numbered existing
+   feature (or the main branch when there is none), so the new feature branch starts from it. Each feature
+   then sees every earlier spec under `specs/` (a branch cut from main would see none, and sequential
+   numbering would collide) and builds on the earlier features' code, matching the foundations-first
+   order. Never discard uncommitted work to switch — if there is any, commit the finished step or stop
+   and ask. Merging the stack into the main branch happens only with the owner's approval.
 
    **Empty input and no features yet** (a fresh project): do not invent features. Read the repository's
    docs (README, `docs/`, any plan, roadmap or checklist file) and propose the feature list for the first
@@ -89,7 +94,9 @@ one line: the feature, the step just finished, and the next step.
      recommended fix. Do not jump to a later stage to work around it.
 
 7. **Commit each finished stage** on the feature branch with a message that says why, e.g.
-   `spec(001-shell): clarify session 2026-11-01`. Never push, never merge to the main branch, never commit
+   `spec(001-shell): clarify session 2026-11-01`. If the commit landed on an earlier feature's branch while
+   later stacked branches exist, propagate it up the stack in order with `git merge --no-edit <earlier>`
+   on each later branch (merge, never rebase or reset), and show the result. Never push, never merge to the main branch, never commit
    credential values; these stay with the owner.
 
 8. **Stop points summary.** You stop and wait for the owner only at: clarify questions; unresolved
