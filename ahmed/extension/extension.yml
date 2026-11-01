@@ -21,6 +21,9 @@ provides:
     - name: "speckit.ahmed.review-gate"
       file: "commands/speckit.ahmed.review-gate.md"
       description: "Pack spec, plan and tasks into one review file, wait for the owner's external review, and record explicit approval"
+    - name: "speckit.ahmed.flow"
+      file: "commands/speckit.ahmed.flow.md"
+      description: "Run the whole workflow in the owner's fixed order, resuming from each feature's stage and stopping only at owner gates"
 
 hooks:
   before_implement:
