@@ -33,6 +33,12 @@ Talk to the owner in Egyptian Arabic with English technical terms in Latin scrip
 
 ## Part A: style reference (up to 10 directions)
 
+0. **Ask first, never assume** (owner 2026-11-01, asked after the fact twice): in one AskUserQuestion call, the
+   UI language(s) and direction, and the theme: dark only, light only, or both. Every direction then follows
+   the answer; when it is one theme, variety comes from layout, organisation and palette only.
+   **Read the product's shape**: if the app is a container of many modules or sections (a super app, a
+   toolbox), the home screen is a launcher that gives every module equal weight and still works with the
+   full planned count (read the module list from the docs); never design home around the first feature.
 1. **Search, never invent.** Use WebSearch (and WebFetch on the best results) for real products with a similar
    idea and for current visual directions: Dribbble, Behance, Mobbin, App Store / Play Store pages, and the
    products' own sites. Note each source URL.
