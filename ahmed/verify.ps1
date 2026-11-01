@@ -119,6 +119,7 @@ function Test-Project([string]$proj, [string]$route) {
   foreach ($cmd in @('specify', 'clarify', 'plan', 'tasks', 'checklist', 'analyze')) {
     Test-FileText (Join-Path $skills "speckit-$cmd\SKILL.md") 'Egyptian Arabic' "$route speckit-$cmd has the owner rules"
   }
+  Test-FileText (Join-Path $skills 'speckit-clarify\SKILL.md') 'AskUserQuestion' "$route clarify uses the owner question format"
   $gate = Join-Path $skills 'speckit-ahmed-review-gate\SKILL.md'
   Test-FileText $gate 'review-package.md' "$route review-gate skill exists"
   $flow = Join-Path $skills 'speckit-ahmed-flow\SKILL.md'
