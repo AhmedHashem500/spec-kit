@@ -3,7 +3,7 @@ schema_version: "1.0"
 extension:
   id: "ahmed"
   name: "Ahmed Owner Gates"
-  version: "1.0.0"
+  version: "1.1.0"
   description: "External review gate: packs spec, plan and tasks for an outside reviewer and blocks implementation until the owner approves"
   category: "process"
   effect: "read-write"
@@ -24,6 +24,9 @@ provides:
     - name: "speckit.ahmed.flow"
       file: "commands/speckit.ahmed.flow.md"
       description: "Run the whole workflow in the owner's fixed order, resuming from each feature's stage and stopping only at owner gates"
+    - name: "speckit.ahmed.discover"
+      file: "commands/speckit.ahmed.discover.md"
+      description: "Study similar products online: up to 10 visual styles for the owner to pick a design reference, and competitor features to propose"
 
 hooks:
   before_implement:

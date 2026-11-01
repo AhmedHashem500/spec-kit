@@ -1,5 +1,5 @@
 ---
-description: Run the whole Spec Kit workflow in the owner's fixed order (specify, clarify, plan, tasks, analyze, external review gate, implement, converge), resuming from whatever stage each feature has reached and stopping only at the owner's decision points.
+description: Run the whole Spec Kit workflow in the owner's fixed order (specify, clarify, discover, plan, tasks, analyze, external review gate, implement, converge), resuming from whatever stage each feature has reached and stopping only at the owner's decision points.
 ---
 
 ## User Input
@@ -28,6 +28,7 @@ one line: the feature, the step just finished, and the next step.
 |---|-------|--------------------|---------------------------|-------------|
 | 1 | specify | `/speckit-specify <description>` | `FEATURE_DIR/spec.md` exists | Only if the spec has `[NEEDS CLARIFICATION]` markers it could not resolve |
 | 2 | clarify | `/speckit-clarify` | `spec.md` contains a `## Clarifications` section with a `### Session` entry, **or** the clarify run reported no material ambiguity and you appended `### Session <date>` with the line `- No material ambiguities found.` | **Yes**: each question, one at a time |
+| 2b | discover | `/speckit-ahmed-discover` | `FEATURE_DIR/discovery.md` exists with an owner decision on every proposed feature (or `Not applicable`), and `docs/design/direction.md` names the chosen style once the project has a UI | **Yes**: the owner picks one of up to 10 styles (choice page, home + one inner screen each) and ticks the competitor features to add |
 | 3 | plan | `/speckit-plan` | `FEATURE_DIR/plan.md` exists and has no unresolved `NEEDS CLARIFICATION` | **Yes**: owner approves the technology choice before step 4 (first feature of a project, or whenever the plan introduces a new dependency or service) |
 | 4 | checklist | `/speckit-checklist <domain>` | `FEATURE_DIR/checklists/<domain>.md` exists | No, but run it **only** when the spec touches sync, encryption, credentials, privacy, payments or health/finance data; domain = `security` and/or `sync`. Otherwise mark the stage "not applicable" |
 | 5 | tasks | `/speckit-tasks` | `FEATURE_DIR/tasks.md` exists | No |
@@ -71,7 +72,7 @@ one line: the feature, the step just finished, and the next step.
    the next run.
 
 4. **Choose what to advance (batch rule).** When several features exist:
-   - First bring **every** feature through stages 1-2 (specify, clarify). Later features often reveal what
+   - First bring **every** feature through stages 1-2b (specify, clarify, discover). Later features often reveal what
      an earlier, foundational feature is missing; fix that in the earlier spec before planning it.
    - Then take features **one at a time in numeric order** through stages 3-10. A later feature never
      passes stage 8 before an earlier one is done, unless the owner says otherwise.
@@ -99,7 +100,7 @@ one line: the feature, the step just finished, and the next step.
    on each later branch (merge, never rebase or reset), and show the result. Never push, never merge to the main branch, never commit
    credential values; these stay with the owner.
 
-8. **Stop points summary.** You stop and wait for the owner only at: clarify questions; unresolved
+8. **Stop points summary.** You stop and wait for the owner only at: clarify questions; the discover style pick and feature ticks; unresolved
    `[NEEDS CLARIFICATION]` after specify; technology approval in plan; CRITICAL/HIGH analyze findings; the
    external review gate (package ready, then explicit approval); the end-of-implementation report; any
    failure. Everywhere else you keep going.
@@ -110,7 +111,7 @@ one line: the feature, the step just finished, and the next step.
 
 ## Rules
 
-- The order in the table is fixed. Never skip clarify, analyze or the review gate, and never write
+- The order in the table is fixed. Never skip clarify, discover, analyze or the review gate, and never write
   `APPROVED.md` yourself outside `/speckit-ahmed-review-gate`.
 - Never edit `.claude/skills/speckit-*` or `.specify/templates/*` in a project; process changes belong in the
   Ahmed fork (`ahmed/extension`, `ahmed/preset`).

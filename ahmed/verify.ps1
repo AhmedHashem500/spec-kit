@@ -124,6 +124,8 @@ function Test-Project([string]$proj, [string]$route) {
   Test-FileText $gate 'review-package.md' "$route review-gate skill exists"
   $flow = Join-Path $skills 'speckit-ahmed-flow\SKILL.md'
   Test-FileText $flow 'Stop points summary' "$route flow skill exists"
+  Test-FileText $flow 'speckit-ahmed-discover' "$route flow runs discover"
+  Test-FileText (Join-Path $skills 'speckit-ahmed-discover\SKILL.md') 'up to 10' "$route discover skill exists"
   $ErrorActionPreference = 'Continue'
   $hookMsg = (& $venvPy (Join-Path $PSScriptRoot 'check_hooks.py') $proj 2>&1) -join ' '
   Write-Check ($LASTEXITCODE -eq 0) "$route hook: $hookMsg"
