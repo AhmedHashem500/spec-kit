@@ -47,7 +47,7 @@ class TestDroidIntegration(SkillsIntegrationTests):
         """Droid is an always-skills agent whose commands install as
         /speckit-<name>, so is_slash_skills_agent must report True — otherwise
         hook invocations and the init next-steps panel render the dotted
-        /speckit.<name> form Droid never registers (mirrors grok/trae/zed/devin)."""
+        /speckit.<name> form Droid never registers (mirrors trae/zed/devin)."""
         from specify_cli._invocation_style import is_slash_skills_agent
 
         # True in BOTH the enabled and disabled cases: Droid is *always* slash,

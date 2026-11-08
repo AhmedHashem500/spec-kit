@@ -52,7 +52,7 @@ class TestAlquimiaAIIntegration:
         assert is_slash_skills_agent("alquimia", True) is True
         # Conditional, not always -- matching the other *conditionally
         # classified* skills-only agents. Being skills-only does not by itself
-        # imply always-slash: Droid, Grok, Trae and Zed are skills-only too and
+        # imply always-slash: Droid, Trae and Zed are skills-only too and
         # sit in `ALWAYS_SLASH_AGENTS`.
         #
         # This is NOT a claim that the dotted form is ever right for Alquimia:

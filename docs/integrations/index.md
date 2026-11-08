@@ -100,7 +100,6 @@ agent's chat window in your IDE. Each page links to the agent's installation doc
 | [Gemini CLI](gemini.md) | `gemini` |
 | [GitHub Copilot](copilot.md) | `copilot` |
 | [Goose](goose.md) | `goose` |
-| [Grok Build](grok.md) | `grok` |
 | [Hermes](hermes.md) | `hermes` |
 | [IBM Bob](bob.md) | `bob` |
 | [Junie](junie.md) | `junie` |

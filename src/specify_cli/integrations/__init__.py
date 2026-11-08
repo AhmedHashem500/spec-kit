@@ -87,7 +87,6 @@ def _register_builtins() -> None:
     from .gemini import GeminiIntegration
     from .generic import GenericIntegration
     from .goose import GooseIntegration
-    from .grok import GrokIntegration
     from .hermes import HermesIntegration
     from .junie import JunieIntegration
     from .kilocode import KilocodeIntegration
@@ -132,7 +131,6 @@ def _register_builtins() -> None:
     _register(GeminiIntegration())
     _register(GenericIntegration())
     _register(GooseIntegration())
-    _register(GrokIntegration())
     _register(HermesIntegration())
     _register(JunieIntegration())
     _register(KilocodeIntegration())

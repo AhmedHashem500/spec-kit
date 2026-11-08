@@ -210,7 +210,7 @@ The other agentic workflows currently operate independently of the Specify CLI.
 This does not mean every change goes through the full workflow. Small fixes can
 use the normal issue, pull request, review, and test process. Dogfooding
 scaffolding and artifacts under `.github/agents/`, `.github/prompts/`,
-`.github/copilot-instructions.md`, `.grok/`, `.specify/`, and `specs/` are
+`.github/copilot-instructions.md`, `.specify/`, and `specs/` are
 intentionally gitignored. The automated assessment workflow is ephemeral and
 neither commits nor pushes its generated Copilot skills, so its output does not
 enter repository history.

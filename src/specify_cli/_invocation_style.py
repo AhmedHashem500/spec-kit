@@ -18,7 +18,6 @@ ALWAYS_SLASH_AGENTS: frozenset[str] = frozenset(
         "docker-agent",
         "droid",
         "dsh",
-        "grok",
         "mcode",
         "muse",
         "qodercli",

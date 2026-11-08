@@ -82,8 +82,6 @@
       href: integrations/copilot.md
     - name: Goose
       href: integrations/goose.md
-    - name: Grok Build
-      href: integrations/grok.md
     - name: Hermes
       href: integrations/hermes.md
     - name: IBM Bob
