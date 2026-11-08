@@ -1088,7 +1088,6 @@
 
 - fix(extensions): resolve __SPECKIT_COMMAND tokens in auto-registered skills (#3544)
 - fix(workflows): fail if/switch steps on non-list branch instead of crashing (#3515)
-- feat(integrations): add Grok Build skills-based integration (#3535)
 - fix(extensions/git): reject negative -Number in create-new-feature-branch.ps1 (#3538)
 - test: cover preset constitution seeding through init CLI (#3297)
 - fix(integration): preserve ai_skills on `use` for skills-mode Copilot (#3550) (#3551)
